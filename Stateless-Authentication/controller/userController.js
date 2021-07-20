@@ -1,4 +1,4 @@
-const userCollection = require('../model/userModel')
+const userModel = require('../model/userModel')
 const { verifyToken,generateToken} = require('./authController')
 
 
