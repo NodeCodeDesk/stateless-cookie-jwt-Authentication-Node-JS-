@@ -2,22 +2,22 @@ const userCollection = require('../model/userModel')
 const { verifyToken,generateToken} = require('./authController')
 
 
-const emailExist = (email)=>{
+const emailExist = async(email)=>{
     try {
-        const result = userCollection.find({email: email});
-        return {id: result._id, firstname: result.username}
+        const result = await userModel.findOne({email: email});
+        return {id: result._id, username: result.name}
     } catch (error) {
         return error
     }
 }
 
 const login = async (req,res)=>{
-    const email = 'me@me2.com';
+    const email = "abcd1@gmail.com"
     try {
         const result = await emailExist(email)
-        const { id, firstname } = result;
 
-        await generateToken(res,id,firstname)
+        const { id, username } = result
+        await generateToken(res,id,username)
 
         res.redirect('/')
     } catch (error) {
