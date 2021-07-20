@@ -5,9 +5,9 @@ const JWT_SECRET = 'RestFullAuth';
 ({ secure:true, httpOnly:true}) -secure means it should only use the cookie 
 over an https network while -httpOnly means the cookie should be read by 
 any client side Javascript*/
-const generateToken = (res,id,firstname)=>{
+const generateToken = (res,id,username)=>{
     const expiration = 1000 * 60 * 60
-    const token = jwt.sign({id:'25',username: 'mahesh1'},JWT_SECRET)
+    const token = jwt.sign({id: id, username: username },JWT_SECRET)
 
     return res.cookie('token',token,{
         expires: new Date(Date.now() + expiration),
